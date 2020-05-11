@@ -4,13 +4,16 @@
 namespace App\Repositories;
 
 
+use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class EventRepository implements EventRepositoryInterface
 {
+    private $event;
 
-    public function __construct()
+    public function __construct(Event $event)
     {
+        $this->event = $event;
     }
 
     public function all()
