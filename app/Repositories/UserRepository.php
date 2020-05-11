@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface
         $this->user = $user;
     }
 
-    public function getUserById()
+    public function getUserById(int $userId)
     {
         // TODO: Implement getUserById() method.
     }
