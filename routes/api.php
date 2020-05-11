@@ -18,12 +18,15 @@ Route::middleware('auth:api')
     ->get('/user', function (Request $request) {
         return response()->json([
             'user' => $request->user(),
-            'token' => $request->user()->token()]);
+            'token' => $request->user()->token()
+        ]);
     });
 
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('logout', 'AuthController@logout');
+});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('signup', 'AuthController@signup');
     Route::post('login', 'AuthController@login');
-    Route::get('logout', 'AuthController@logout');
 });
