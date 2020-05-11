@@ -6,5 +6,5 @@ namespace App\Repositories\Interfaces;
 
 interface UserRepositoryInterface
 {
-    public function getUserById();
+    public function getUserById(int $userId);
 }
