@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sport extends Model
+class Participant extends Model
 {
     protected $fillable = [
-        'name', 'img'
+        'user_id', 'follower_id'
     ];
 
     public $timestamps = true;
