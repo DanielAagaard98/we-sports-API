@@ -18,22 +18,24 @@ class EventRepository implements EventRepositoryInterface
 
     public function all()
     {
-        // TODO: Implement all() method.
+        return $this->event::all();
     }
 
-    public function getEventById()
+    public function getEventById(int $eventId)
     {
-        // TODO: Implement getEventById() method.
+        return $this->event::find($eventId);
     }
 
-    public function update()
+    public function update(array $data, int $eventId)
     {
-        // TODO: Implement update() method.
+        return $this->event::find($eventId)
+            ->update($data);
+
     }
 
-    public function delete()
+    public function delete(int $eventId)
     {
-        // TODO: Implement delete() method.
+        return $this->event::destroy($eventId);
     }
 
     public function getEventsByUser()
