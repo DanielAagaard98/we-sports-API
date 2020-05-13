@@ -26,9 +26,14 @@ Route::middleware('auth:api')
             'token' => $request->user()->token()
         ]);
     });
+
+//TODO falta autorizar con middleware
 Route::get('events', 'EventController@notExpiredEvents');
-Route::post('events', 'Eventcontroller@createEvent');
 Route::get('events/{id}', 'EventController@getEventById');
+Route::post('events', 'Eventcontroller@createEvent');
+Route::delete('events/{id}', 'EventController@deleteEvent');
+Route::put('events/{id}', 'EventController@updateEvent');
+
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
