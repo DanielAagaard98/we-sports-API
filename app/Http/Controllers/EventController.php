@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use Illuminate\Http\Request;
 
