@@ -26,6 +26,11 @@ class EventRepository implements EventRepositoryInterface
         return $this->event::find($eventId);
     }
 
+    public function create(array $data)
+    {
+        return $this->event::create($data);
+    }
+
     public function update(array $data, int $eventId)
     {
         return $this->event::find($eventId)
@@ -56,5 +61,11 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByDate()
     {
         // TODO: Implement getEventsByDate() method.
+    }
+
+
+    public function getEventBySport()
+    {
+        // TODO: Implement getEventBySport() method.
     }
 }
