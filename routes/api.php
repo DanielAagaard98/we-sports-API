@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Eventos:
+ * todos, noCaducados,
+ */
+
 Route::middleware('auth:api')
     ->get('/user', function (Request $request) {
         return response()->json([
@@ -21,6 +26,8 @@ Route::middleware('auth:api')
             'token' => $request->user()->token()
         ]);
     });
+Route::get('events', 'EventController@nonExpiredEvents');
+
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');

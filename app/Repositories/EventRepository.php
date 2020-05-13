@@ -6,44 +6,57 @@ namespace App\Repositories;
 
 use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
+use Carbon\Carbon;
+use DateTime;
 
 class EventRepository implements EventRepositoryInterface
 {
     private $event;
+    private $datetime;
 
-    public function __construct(Event $event)
+    public function __construct(Event $event, DateTime $datetime)
     {
         $this->event = $event;
+        $this->datetime = Carbon::today();
     }
 
     public function all()
     {
-        // TODO: Implement all() method.
+        return $this->event::all();
     }
 
-    public function getEventById()
+    public function getEventById(int $eventId)
     {
-        // TODO: Implement getEventById() method.
+        return $this->event::find($eventId);
     }
 
-    public function update()
+    public function create(array $data)
     {
-        // TODO: Implement update() method.
+        return $this->event::create($data);
     }
 
-    public function delete()
+    public function update(array $data, int $eventId)
     {
-        // TODO: Implement delete() method.
+        return $this->event::findOrFail($eventId)
+            ->update($data);
+
     }
 
-    public function getEventsByUser()
+    public function delete(int $eventId)
     {
-        // TODO: Implement getEventsByUser() method.
+        return $this->event::find($eventId)->delete();
     }
 
-    public function getEventsByCategory()
+    public function getEventsByUser(int $userId)
     {
-        // TODO: Implement getEventsByCategory() method.
+        return $this->event::where('creator_id', '=', $userId)
+            ->get();
+    }
+
+    public function getEventsBySport(int $sportId)
+    {
+        return $this->event::where('sport_id', '=', $sportId)
+            ->get();
     }
 
     public function getEventsByLocation()
@@ -54,5 +67,10 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByDate()
     {
         // TODO: Implement getEventsByDate() method.
+    }
+
+    public function allNotExpired()
+    {
+        return $this->event::where('datetime', '>=', $this->datetime);
     }
 }

@@ -17,11 +17,12 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id');
             $table->unsignedBigInteger('sport_id');
-            $table->string('city',100);
+            $table->string('title', 100);
+            $table->string('city', 100);
             $table->string('address', 200);
             $table->dateTime('datetime');
             $table->integer('max_participants');
-            $table->integer('current_participants');
+            $table->integer('current_participants')->default(1);
             $table->text('img');
 
             $table->foreign('creator_id')->references('id')->on('users');
