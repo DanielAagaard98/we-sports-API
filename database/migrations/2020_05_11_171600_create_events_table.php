@@ -17,7 +17,8 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id');
             $table->unsignedBigInteger('sport_id');
-            $table->string('city',100);
+            $table->string('title', 100);
+            $table->string('city', 100);
             $table->string('address', 200);
             $table->dateTime('datetime');
             $table->integer('max_participants');

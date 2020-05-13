@@ -22,11 +22,11 @@ class ParticipantRepository implements ParticipantRepositoryInterface
         return $this->participant::all();
     }
 
-    public function getParticipantsByEvent()
+    public function getParticipantsByEvent(int $eventId)
     {
-        return $this->participant::where()
-            ->join()
-            ->select()
+        return $this->participant::where('event_id', '=', $eventId)
+            ->join('users', 'users.id', '=', 'participants.user_id')
+            ->select('users.nickname')
             ->get();
     }
 }
