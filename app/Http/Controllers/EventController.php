@@ -62,4 +62,8 @@ class EventController extends Controller
            'message' => 'Algo no ha salido como esperabamos.'
         ]);
     }
+
+    public function updateEvent(Request $request, int $eventId){
+        $updatedEvent = $this->eventRepository->update($request->all(), $eventId);
+    }
 }
