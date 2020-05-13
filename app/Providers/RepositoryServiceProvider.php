@@ -5,9 +5,7 @@ namespace App\Providers;
 use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Repositories\Interfaces\SportRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\SportRepository;
-use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,10 +24,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             SportRepositoryInterface::class,
             SportRepository::class
-        );
-        $this->app->bind(
-            UserRepositoryInterface::class,
-            UserRepository::class
         );
     }
 

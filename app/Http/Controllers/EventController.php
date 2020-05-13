@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\EventRepositoryInterface;
-use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
@@ -18,5 +17,11 @@ class EventController extends Controller
     {
         $events = $this->eventRepository->allNotExpired();
         return response()->json($events);
+    }
+
+    public function getEventById(int $id)
+    {
+        $event = $this->eventRepository->getEventById($id);
+        return response()->json($event);
     }
 }

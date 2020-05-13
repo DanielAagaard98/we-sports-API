@@ -27,7 +27,8 @@ Route::middleware('auth:api')
         ]);
     });
 Route::get('events', 'EventController@nonExpiredEvents');
-
+Route::post('events', 'Eventcontroller@createEvent');
+Route::get('events/{id}', 'EventController@getEventById');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
