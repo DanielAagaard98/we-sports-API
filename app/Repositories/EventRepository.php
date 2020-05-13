@@ -6,14 +6,18 @@ namespace App\Repositories;
 
 use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
+use Carbon\Carbon;
+use DateTime;
 
 class EventRepository implements EventRepositoryInterface
 {
     private $event;
+    private $datetime;
 
-    public function __construct(Event $event)
+    public function __construct(Event $event, DateTime $datetime)
     {
         $this->event = $event;
+        $this->datetime = Carbon::today();
     }
 
     public function all()
