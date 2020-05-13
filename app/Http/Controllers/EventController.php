@@ -50,4 +50,16 @@ class EventController extends Controller
     {
         return str_replace('_', ' ', $name);
     }
+
+    public function deleteEvent(int $eventId){
+        $success = $this->eventRepository->delete($eventId);
+        if ($success){
+            return response()->json([
+                'message' => 'Evento eliminado correctamente'
+            ], 204);
+        }
+        return response()->json([
+           'message' => 'Algo no ha salido como esperabamos.'
+        ]);
+    }
 }
