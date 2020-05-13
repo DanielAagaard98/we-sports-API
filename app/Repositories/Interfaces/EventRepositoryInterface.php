@@ -6,6 +6,7 @@ namespace App\Repositories\Interfaces;
 
 interface EventRepositoryInterface
 {
+    //TODO comprobar fechas hacer funciones retorno caducados no caducados.
     public function all();
     public function getEventById(int $eventId);
     public function update(array $data, int $eventId);
