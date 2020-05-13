@@ -1,9 +1,12 @@
 <?php
 
+use App\Sport;
 use Illuminate\Database\Seeder;
 
 class SportsTableSeeder extends Seeder
 {
+    const SPORTS = ['Futbol', 'Basquet', 'Tenis', 'Voley', 'Padel', 'Ciclismo', 'Patinaje', 'Senderismo',
+                    'Waterpolo', 'Hockey'];
     /**
      * Run the database seeds.
      *
@@ -11,6 +14,10 @@ class SportsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        foreach (self::SPORTS as $sport){
+            Sport::create([
+                'name' => $sport
+            ]);
+        }
     }
 }

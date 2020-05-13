@@ -19,7 +19,11 @@ class UsersTableSeeder extends Seeder
             'nickname' => 'administrador',
             'email' => 'admin@admin.com',
             'password' => 'admin1234',
-            'name' => 'Administrador'
+            'name' => 'Administrador',
+            'surnames' => 'We Sports',
+            'phone' => 666777888,
+            'city' => 'Barcelona',
+            'address' => 'Pau Claris 121',
         ]);
 
         for ($i = 0; $i < 10; $i++){
@@ -30,8 +34,8 @@ class UsersTableSeeder extends Seeder
                 'name' => $nickname,
                 'email' => $email.'@gmail.com',
                 'password' => $password,
-                'surname' => $faker->name,
-                'phone' => $faker->phoneNumber,
+                'surnames' => $faker->name,
+                'phone' => 666777666,
                 'city' => $faker->city,
                 'address' => $faker->address,
             ]);
