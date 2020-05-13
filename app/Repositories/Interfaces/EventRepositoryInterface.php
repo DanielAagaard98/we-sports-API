@@ -8,6 +8,7 @@ interface EventRepositoryInterface
 {
     //TODO comprobar fechas hacer funciones retorno caducados no caducados.
     public function all();
+    public function allNotExpired();
     public function getEventById(int $eventId);
     public function update(array $data, int $eventId);
     public function create(array $data);
@@ -16,4 +17,5 @@ interface EventRepositoryInterface
     public function getEventsBySport(int $sportId);
     public function getEventsByLocation();
     public function getEventsByDate();
+
 }
