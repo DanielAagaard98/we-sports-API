@@ -43,14 +43,16 @@ class EventRepository implements EventRepositoryInterface
         return $this->event::destroy($eventId);
     }
 
-    public function getEventsByUser()
+    public function getEventsByUser(int $userId)
     {
-        // TODO: Implement getEventsByUser() method.
+        return $this->event::where('creator_id', '=', $userId)
+            ->get();
     }
 
-    public function getEventsByCategory()
+    public function getEventsBySport(int $sportId)
     {
-        // TODO: Implement getEventsByCategory() method.
+        return $this->event::where('sport_id', '=', $sportId)
+            ->get();
     }
 
     public function getEventsByLocation()

@@ -11,8 +11,8 @@ interface EventRepositoryInterface
     public function update(array $data, int $eventId);
     public function create(array $data);
     public function delete(int $eventId);
-    public function getEventsByUser();
-    public function getEventsByCategory();
+    public function getEventsByUser(int $userId);
+    public function getEventsBySport(int $sportId);
     public function getEventsByLocation();
     public function getEventsByDate();
 }
