@@ -25,6 +25,11 @@ class EventRepository implements EventRepositoryInterface
         return $this->event::all();
     }
 
+    public function allNotExpired()
+    {
+        return $this->event::where('datetime', '>=', $this->datetime);
+    }
+
     public function getEventById(int $eventId)
     {
         return $this->event::find($eventId);
