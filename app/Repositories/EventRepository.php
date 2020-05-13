@@ -59,9 +59,10 @@ class EventRepository implements EventRepositoryInterface
             ->get();
     }
 
-    public function getEventsByLocation()
+    public function getEventsByLocation(string $city)
     {
-        // TODO: Implement getEventsByLocation() method.
+        return $this->event::where('city', 'like', $city)
+            ->get();
     }
 
     public function getEventsByDate()

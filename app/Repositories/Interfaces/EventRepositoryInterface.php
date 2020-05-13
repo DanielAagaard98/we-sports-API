@@ -14,7 +14,7 @@ interface EventRepositoryInterface
     public function delete(int $eventId);
     public function getEventsByUser(int $userId);
     public function getEventsBySport(int $sportId);
-    public function getEventsByLocation();
+    public function getEventsByLocation(string $city);
     public function getEventsByDate();
 
 }
