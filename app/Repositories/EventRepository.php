@@ -14,7 +14,7 @@ class EventRepository implements EventRepositoryInterface
     private $event;
     private $datetime;
 
-    public function __construct(Event $event, DateTime $datetime)
+    public function __construct(Event $event)
     {
         $this->event = $event;
         $this->datetime = Carbon::today();
@@ -59,9 +59,10 @@ class EventRepository implements EventRepositoryInterface
             ->get();
     }
 
-    public function getEventsByLocation()
+    public function getEventsByLocation(string $city)
     {
-        // TODO: Implement getEventsByLocation() method.
+        return $this->event::where('city', 'like', $city)
+            ->get();
     }
 
     public function getEventsByDate()

@@ -14,9 +14,40 @@ class EventController extends Controller
         $this->eventRepository = $eventRepository;
     }
 
-    public function allNotExpired()
+    public function notExpiredEvents(Request $request)
     {
-        $events = $this->eventRepository->allNotExpired();
+        $events = null;
+        /**
+         * Comprobar distintos parametros de get
+         * para saber si buscamos por autor, ciudad, deporte?
+         */
+
+        //TODO No se esta comprobando fecha ahora mismo!
+
+        if ($request->get('creator')){
+            $creatorId = $request->get('creator');
+            $events = $this->eventRepository->getEventsByUser($creatorId);
+        } elseif ($request->get('sport')){
+            $sportId = $request->get('sport');
+            $events = $this->eventRepository->getEventsBySport($sportId);
+        } elseif ($request->get('city')){
+            $city = $request->get('city');
+            $city = $this->parseGetParameterText($city);
+            $events = $this->eventRepository->getEventsByLocation($city);
+        } else {
+            $events = $this->eventRepository->allNotExpired();
+        }
         return response()->json($events);
+    }
+
+    public function getEventById(int $id)
+    {
+        $event = $this->eventRepository->getEventById($id);
+        return response()->json($event);
+    }
+
+    public function parseGetParameterText(string $name): string
+    {
+        return str_replace('_', ' ', $name);
     }
 }
