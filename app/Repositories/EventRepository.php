@@ -6,14 +6,18 @@ namespace App\Repositories;
 
 use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
+use Carbon\Carbon;
+use DateTime;
 
 class EventRepository implements EventRepositoryInterface
 {
     private $event;
+    private $datetime;
 
-    public function __construct(Event $event)
+    public function __construct(Event $event, DateTime $datetime)
     {
         $this->event = $event;
+        $this->datetime = Carbon::today();
     }
 
     public function all()
@@ -33,14 +37,14 @@ class EventRepository implements EventRepositoryInterface
 
     public function update(array $data, int $eventId)
     {
-        return $this->event::find($eventId)
+        return $this->event::findOrFail($eventId)
             ->update($data);
 
     }
 
     public function delete(int $eventId)
     {
-        return $this->event::destroy($eventId);
+        return $this->event::find($eventId)->delete();
     }
 
     public function getEventsByUser(int $userId)

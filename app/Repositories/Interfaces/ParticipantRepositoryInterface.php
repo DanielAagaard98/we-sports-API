@@ -7,5 +7,5 @@ namespace App\Repositories\Interfaces;
 interface ParticipantRepositoryInterface
 {
     public function all();
-    public function getParticipantsByEvent();
+    public function getParticipantsByEvent(int $eventId);
 }

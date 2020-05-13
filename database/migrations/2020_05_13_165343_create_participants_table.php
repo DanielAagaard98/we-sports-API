@@ -16,10 +16,10 @@ class CreateParticipantsTable extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('follower_id');
+            $table->unsignedBigInteger('event_id');
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('follower_id')->references('id')->on('users');
+            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
         });
     }
