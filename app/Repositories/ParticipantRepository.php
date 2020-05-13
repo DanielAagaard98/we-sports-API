@@ -24,6 +24,9 @@ class ParticipantRepository implements ParticipantRepositoryInterface
 
     public function getParticipantsByEvent()
     {
-        // TODO: Implement getParticipantsByEvent() method.
+        return $this->participant::where()
+            ->join()
+            ->select()
+            ->get();
     }
 }

@@ -15,5 +15,4 @@ interface EventRepositoryInterface
     public function getEventsByCategory();
     public function getEventsByLocation();
     public function getEventsByDate();
-    public function getEventBySport();
 }

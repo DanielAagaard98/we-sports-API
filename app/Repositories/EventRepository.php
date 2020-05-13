@@ -64,8 +64,4 @@ class EventRepository implements EventRepositoryInterface
     }
 
 
-    public function getEventBySport()
-    {
-        // TODO: Implement getEventBySport() method.
-    }
 }
