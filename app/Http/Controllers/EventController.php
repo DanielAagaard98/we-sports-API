@@ -66,4 +66,11 @@ class EventController extends Controller
     {
         $updatedEvent = $this->eventRepository->update($request->all(), $eventId);
     }
+
+    public function createEvent(Request $request)
+    {
+        $createdEvent = $this->eventRepository->create($request->all());
+    }
+
+
 }
