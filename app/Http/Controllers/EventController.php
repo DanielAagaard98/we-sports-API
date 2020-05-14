@@ -22,20 +22,18 @@ class EventController extends Controller
          * para saber si buscamos por autor, ciudad, deporte?
          */
 
-        //TODO No se esta comprobando fecha ahora mismo!
-
-        if ($request->get('creator')){
+        if ($request->get('creator')) {
             $creatorId = $request->get('creator');
             $events = $this->eventRepository->getEventsByUser($creatorId);
-        } elseif ($request->get('sport')){
+        } elseif ($request->get('sport')) {
             $sportId = $request->get('sport');
             $events = $this->eventRepository->getEventsBySport($sportId);
-        } elseif ($request->get('city')){
+        } elseif ($request->get('city')) {
             $city = $request->get('city');
             $city = $this->parseGetParameterText($city);
             $events = $this->eventRepository->getEventsByLocation($city);
         } else {
-            $events = $this->eventRepository->allNotExpired();
+            $events = $this->eventRepository->all();
         }
         return response()->json($events);
     }
@@ -51,19 +49,28 @@ class EventController extends Controller
         return str_replace('_', ' ', $name);
     }
 
-    public function deleteEvent(int $eventId){
+    public function deleteEvent(int $eventId)
+    {
         $success = $this->eventRepository->delete($eventId);
-        if ($success){
+        if ($success) {
             return response()->json([
                 'message' => 'Evento eliminado correctamente'
             ], 204);
         }
         return response()->json([
-           'message' => 'Algo no ha salido como esperabamos.'
+            'message' => 'Algo no ha salido como esperabamos.'
         ]);
     }
 
-    public function updateEvent(Request $request, int $eventId){
+    public function updateEvent(Request $request, int $eventId)
+    {
         $updatedEvent = $this->eventRepository->update($request->all(), $eventId);
     }
+
+    public function createEvent(Request $request)
+    {
+        $createdEvent = $this->eventRepository->create($request->all());
+    }
+
+
 }
