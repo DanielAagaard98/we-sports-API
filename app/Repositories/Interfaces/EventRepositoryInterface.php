@@ -4,6 +4,8 @@
 namespace App\Repositories\Interfaces;
 
 
+use DateTime;
+
 interface EventRepositoryInterface
 {
     public function all();
@@ -15,6 +17,6 @@ interface EventRepositoryInterface
     public function getEventsByUser(int $userId);
     public function getEventsBySport(int $sportId);
     public function getEventsByLocation(string $city);
-    public function getEventsByDate();
+    public function getEventsByDate(DateTime $dateTime);
 
 }

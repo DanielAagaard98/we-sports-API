@@ -17,7 +17,7 @@ class EventRepository implements EventRepositoryInterface
     public function __construct(Event $event)
     {
         $this->event = $event;
-        $this->datetime = Carbon::today();
+        $this->datetime = Carbon::now();
     }
 
     public function all()
@@ -65,13 +65,15 @@ class EventRepository implements EventRepositoryInterface
             ->get();
     }
 
-    public function getEventsByDate()
+    public function getEventsByDate(DateTime $datetime)
     {
-        // TODO: Implement getEventsByDate() method.
+        return $this->event::where('datetime', '>=', $this->datetime)
+            ->get();
     }
 
     public function allNotExpired()
     {
-        return $this->event::where('datetime', '>=', $this->datetime);
+        return $this->event::where('datetime', '>=', $this->datetime)
+            ->get();
     }
 }
