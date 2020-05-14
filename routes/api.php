@@ -35,6 +35,13 @@ Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
 
 
+Route::get('sports', 'SportController@all');
+Route::get('sports/{id}', 'SportController@getSportById');
+
+Route::get('events/{id}/participants', 'ParticipantController@getParticipantsByEvent');
+
+
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
 });
