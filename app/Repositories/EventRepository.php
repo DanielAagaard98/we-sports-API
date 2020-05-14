@@ -27,7 +27,9 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventById(int $eventId)
     {
-        return $this->event::find($eventId);
+        //No estoy seguro si este necesita ser tambien por datetime
+        return $this->event::find($eventId)
+            ->where('datetime', '>=', $this->datetime);
     }
 
     public function create(array $data)
@@ -50,18 +52,21 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByUser(int $userId)
     {
         return $this->event::where('creator_id', '=', $userId)
+            ->where('datetime', '>=', $this->datetime)
             ->get();
     }
 
     public function getEventsBySport(int $sportId)
     {
         return $this->event::where('sport_id', '=', $sportId)
+            ->where('datetime', '>=', $this->datetime)
             ->get();
     }
 
     public function getEventsByLocation(string $city)
     {
         return $this->event::where('city', 'like', $city)
+            ->where('datetime', '>=', $this->datetime)
             ->get();
     }
 
