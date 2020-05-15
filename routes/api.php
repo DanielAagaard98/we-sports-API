@@ -27,13 +27,14 @@ Route::middleware('auth:api')
         ]);
     });
 
-//TODO falta autorizar con middleware (Comprobar headers correctos)
-
+Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/{id}', 'EventController@getEventById');
+
+//TODO Peticiones que requieren de auth:
 Route::post('events', 'Eventcontroller@createEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
-
+/////////////////////////////////////////////
 
 Route::get('sports', 'SportController@all');
 Route::get('sports/{id}', 'SportController@getSportById');
@@ -45,6 +46,5 @@ Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
-    Route::get('events', 'EventController@notExpiredEvents');
 });
 
