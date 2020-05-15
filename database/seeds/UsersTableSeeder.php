@@ -13,12 +13,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        $password = 'user1234';
+        $password = bcrypt('user1234');
 
+        $userPassword = bcrypt('admin1234');
         User::create([
             'nickname' => 'administrador',
             'email' => 'admin@admin.com',
-            'password' => 'admin1234',
+            'password' => $userPassword,
             'name' => 'Administrador',
             'surnames' => 'We Sports',
             'phone' => 666777888,
