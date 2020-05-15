@@ -33,7 +33,7 @@ class EventController extends Controller
             $city = $this->parseGetParameterText($city);
             $events = $this->eventRepository->getEventsByLocation($city);
         } else {
-            $events = $this->eventRepository->all();
+            $events = $this->eventRepository->allNotExpired();
         }
         return response()->json($events);
     }
