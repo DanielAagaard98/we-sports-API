@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
     {
         if (!$request->wantsJson()){
             return response()->json([
-               'Comprueba que la petición contiene los headers:' => [
+               'Comprueba que la peticion contiene los headers:' => [
                    'Accept' => 'application/json',
                    'Content-Type' => 'application/json'
                ]
