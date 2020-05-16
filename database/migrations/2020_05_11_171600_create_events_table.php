@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('title', 100);
             $table->string('city', 100);
             $table->string('address', 200);
+            $table->text('description');
             $table->dateTime('datetime');
             $table->integer('max_participants');
             $table->integer('current_participants')->default(1);
