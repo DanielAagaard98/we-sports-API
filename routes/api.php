@@ -31,17 +31,20 @@ Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/{id}', 'EventController@getEventById');
 
 //TODO Peticiones que requieren de auth:
-Route::post('events', 'Eventcontroller@createEvent');
+Route::post('events', 'EventController@createEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
-/////////////////////////////////////////////
 
 Route::get('sports', 'SportController@all');
 Route::get('sports/{id}', 'SportController@getSportById');
 
 Route::get('events/{id}/participants', 'ParticipantController@getParticipantsByEvent');
 
-Route::post('signup', 'AuthController@signup');
+Route::get('users','UserController@all');
+Route::get('users/{id}','UserController@getUserById');
+Route::get('users/{nickname}', 'UserController@getUserByNickname');
+
+//Route::post('signup', 'AuthController@signup');
 Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {

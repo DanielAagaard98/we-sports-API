@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
                    'Accept' => 'application/json',
                    'Content-Type' => 'application/json'
                ]
-            ]);
+            ], 406);
         }
         return parent::render($request, $exception);
     }
