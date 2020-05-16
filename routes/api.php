@@ -31,7 +31,7 @@ Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/{id}', 'EventController@getEventById');
 
 //TODO Peticiones que requieren de auth:
-Route::post('events', 'Eventcontroller@createEvent');
+Route::post('events', 'EventController@createEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
 
