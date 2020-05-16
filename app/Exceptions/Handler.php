@@ -50,6 +50,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if (!$request->wantsJson()){
+            return response()->json([
+               'Comprueba que la peticion contiene los headers:' => [
+                   'Accept' => 'application/json',
+                   'Content-Type' => 'application/json'
+               ]
+            ]);
+        }
         return parent::render($request, $exception);
     }
 }

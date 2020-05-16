@@ -27,9 +27,10 @@ Route::middleware('auth:api')
         ]);
     });
 
-//TODO falta autorizar con middleware
 Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/{id}', 'EventController@getEventById');
+
+//TODO Peticiones que requieren de auth:
 Route::post('events', 'Eventcontroller@createEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
@@ -44,12 +45,10 @@ Route::get('users','UserController@all');
 Route::get('users/{id}','UserController@getUserById');
 Route::get('users/{nickname}', 'UserController@getUserByNickname');
 
+Route::post('signup', 'AuthController@signup');
+Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
 });
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('signup', 'AuthController@signup');
-    Route::post('login', 'AuthController@login');
-});
