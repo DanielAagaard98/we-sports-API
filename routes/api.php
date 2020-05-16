@@ -40,6 +40,9 @@ Route::get('sports/{id}', 'SportController@getSportById');
 
 Route::get('events/{id}/participants', 'ParticipantController@getParticipantsByEvent');
 
+Route::get('users','UserController@all');
+Route::get('users/{id}','UserController@getUserById');
+Route::get('users/{nickname}', 'UserController@getUserByNickname');
 
 
 Route::group(['middleware' => 'auth:api'], function () {
