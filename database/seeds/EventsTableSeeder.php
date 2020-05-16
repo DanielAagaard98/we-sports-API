@@ -27,7 +27,7 @@ class EventsTableSeeder extends Seeder
                 'description' => $faker->realText(),
                 'city' => $faker->city,
                 'address' => $faker->address,
-                'datetime' => $faker->dateTime,
+                'datetime' => $faker->dateTimeBetween('+2 months', '+2 years'),
                 'max_participants' => rand(1,50),
                 'img' => 'img/test',
             ]);
