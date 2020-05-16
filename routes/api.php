@@ -35,7 +35,6 @@ Route::post('events', 'Eventcontroller@createEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events/{id}', 'EventController@updateEvent');
 
-
 Route::get('sports', 'SportController@all');
 Route::get('sports/{id}', 'SportController@getSportById');
 
@@ -45,7 +44,7 @@ Route::get('users','UserController@all');
 Route::get('users/{id}','UserController@getUserById');
 Route::get('users/{nickname}', 'UserController@getUserByNickname');
 
-Route::post('signup', 'AuthController@signup');
+//Route::post('signup', 'AuthController@signup');
 Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
