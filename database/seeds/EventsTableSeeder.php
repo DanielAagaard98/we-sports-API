@@ -15,7 +15,7 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $faker = Factory::create('es_ES');
         $usersId = User::all()->pluck('id')->toArray();
         $sportsId = Sport::all()->pluck('id')->toArray();
 
@@ -23,7 +23,8 @@ class EventsTableSeeder extends Seeder
             Event::create([
                 'creator_id' => $faker->randomElement($usersId),
                 'sport_id' => $faker->randomElement($sportsId),
-                'title' => $faker->title,
+                'title' => $faker->text(30),
+                'description' => $faker->realText(),
                 'city' => $faker->city,
                 'address' => $faker->address,
                 'datetime' => $faker->dateTime,

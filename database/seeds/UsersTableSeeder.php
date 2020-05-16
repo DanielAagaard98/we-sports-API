@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $faker = Factory::create('es_ES');
         $password = bcrypt('user1234');
 
         $userPassword = bcrypt('admin1234');
@@ -28,12 +28,12 @@ class UsersTableSeeder extends Seeder
         ]);
 
         for ($i = 0; $i < 10; $i++){
-            $nickname = $faker->unique()->name;
-            $email = str_replace(' ', '', $nickname);
+            $name = $faker->unique()->name;
+            $nameWithoutSpace = str_replace(' ', '', $name);
             User::create([
-                'nickname' => $nickname,
-                'name' => $nickname,
-                'email' => $email.'@gmail.com',
+                'nickname' => $nameWithoutSpace,
+                'name' => $name,
+                'email' => $nameWithoutSpace.'@gmail.com',
                 'password' => $password,
                 'surnames' => $faker->name,
                 'phone' => 666777666,
