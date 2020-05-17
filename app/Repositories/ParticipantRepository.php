@@ -29,4 +29,9 @@ class ParticipantRepository implements ParticipantRepositoryInterface
             ->select('users.nickname')
             ->get();
     }
+
+    public function addParticipant($data)
+    {
+        return $this->participant::create($data);
+    }
 }
