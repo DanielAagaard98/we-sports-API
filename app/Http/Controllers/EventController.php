@@ -75,5 +75,11 @@ class EventController extends Controller
         return response()->json($createdEvent, 201);
     }
 
+    public function notExpiredEventsCompleteInfo()
+    {
+        $events = $this->eventRepository->notExpiredEventsCompleteInfo();
+        
+        return response()->json($events);
+    }
 
 }
