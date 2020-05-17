@@ -28,6 +28,7 @@ Route::middleware('auth:api')
     });
 
 Route::get('events', 'EventController@notExpiredEvents');
+Route::get('events/joined', 'EventController@notExpiredEventsCompleteInfo');
 Route::get('events/{id}', 'EventController@getEventById');
 
 //TODO Peticiones que requieren de auth:
