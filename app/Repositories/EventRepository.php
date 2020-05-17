@@ -79,6 +79,9 @@ class EventRepository implements EventRepositoryInterface
     public function allNotExpired()
     {
         return $this->event::where('datetime', '>=', $this->datetime)
+            ->join('users', 'users.id', '=', 'events.creator_id')
+            ->join('sports', 'sports.id', '=', 'events.sport_id')
+            ->select('events.*','users.nickname', 'sports.name')
             ->get();
     }
 }
