@@ -30,19 +30,13 @@ Route::middleware('auth:api')
 Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/joined', 'EventController@notExpiredEventsCompleteInfo');
 Route::get('events/{id}', 'EventController@getEventById');
-
-//TODO Peticiones que requieren de auth:
-Route::post('events', 'EventController@createEvent');
-Route::delete('events/{id}', 'EventController@deleteEvent');
-Route::put('events/{id}', 'EventController@updateEvent');
-
 Route::get('sports', 'SportController@all');
 Route::get('sports/{id}', 'SportController@getSportById');
-
 Route::get('events/{id}/participants', 'ParticipantController@getParticipantsByEvent');
 
-Route::get('users','UserController@all');
-Route::get('users/{id}','UserController@getUserById');
+
+Route::get('users', 'UserController@all');
+Route::get('users/{id}', 'UserController@getUserById');
 Route::get('users/{nickname}', 'UserController@getUserByNickname');
 
 //Route::post('signup', 'AuthController@signup');
@@ -50,5 +44,8 @@ Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
+    Route::post('events', 'EventController@createEvent');
+    Route::delete('events/{id}', 'EventController@deleteEvent');
+    Route::put('events/{id}', 'EventController@updateEvent');
 });
 

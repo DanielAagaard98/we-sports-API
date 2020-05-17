@@ -19,4 +19,10 @@ class ParticipantController extends Controller
         $participants = $this->participantRepository->getParticipantsByEvent($eventId);
         return response()->json($participants);
     }
+
+    public function addParticipant(Request $request)
+    {
+        $createParticipant = $this->participantRepository->addParticipant($request->all());
+        return response()->json($createParticipant, 201);
+    }
 }
