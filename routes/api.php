@@ -29,6 +29,7 @@ Route::middleware('auth:api')
 
 Route::get('events', 'EventController@notExpiredEvents');
 Route::get('events/joined', 'EventController@notExpiredEventsCompleteInfo');
+Route::get('events/highlighted', 'EventController@highlightedEvents');
 Route::get('events/{id}', 'EventController@getEventById');
 Route::get('sports', 'SportController@all');
 Route::get('sports/{id}', 'SportController@getSportById');
