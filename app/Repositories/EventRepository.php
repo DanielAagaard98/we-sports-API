@@ -27,9 +27,7 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventById(int $eventId)
     {
-        //No estoy seguro si este necesita ser tambien por datetime
-        return $this->event::find($eventId)
-            ->where('datetime', '>=', $this->datetime);
+        return $this->event::find($eventId);
     }
 
     public function create(array $data)
@@ -41,7 +39,6 @@ class EventRepository implements EventRepositoryInterface
     {
         return $this->event::findOrFail($eventId)
             ->update($data);
-
     }
 
     public function delete(int $eventId)
@@ -71,23 +68,26 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventsByDate(DateTime $datetime)
     {
-        return $this->event::where('datetime', '>=', $this->datetime)
-            ->where('datetime', '>=', $this->datetime)
+        return $this->event::where('datetime', '=', $this->datetime)
             ->get();
     }
 
-    public function allNotExpired()
+    public function highlightedEvents()
     {
         return $this->event::where('datetime', '>=', $this->datetime)
-            ->join('users', 'users.id', '=', 'events.creator_id')
-            ->join('sports', 'sports.id', '=', 'events.sport_id')
-            ->select('events.*','users.nickname', 'sports.name')
+            ->select('events.*', 'users.nickname', 'sports.name')
+            ->join('sports', 'events.sport_id', '=', 'sports.id')
+            ->join('users', 'events.creator_id', '=', 'users.id')
+            ->orderBy('events.max_participants', 'desc')
+            ->take(10)
             ->get();
+
     }
 
     public function notExpiredEventsCompleteInfo()
     {
-        return $this->event::select('events.*', 'users.nickname', 'sports.name')
+        return $this->event::where('datetime', '>=', $this->datetime)
+            ->select('events.*', 'users.nickname', 'sports.name')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
             ->get();

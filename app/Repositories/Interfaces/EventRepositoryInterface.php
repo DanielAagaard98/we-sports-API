@@ -9,7 +9,7 @@ use DateTime;
 interface EventRepositoryInterface
 {
     public function all();
-    public function allNotExpired();
+    public function highlightedEvents();
     public function getEventById(int $eventId);
     public function update(array $data, int $eventId);
     public function create(array $data);
