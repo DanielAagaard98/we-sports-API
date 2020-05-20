@@ -19,4 +19,5 @@ interface EventRepositoryInterface
     public function getEventsByLocation(string $city);
     public function getEventsByDate(DateTime $dateTime);
     public function notExpiredEventsCompleteInfo();
+    public function filteredEvents(int $i, int $a);
 }

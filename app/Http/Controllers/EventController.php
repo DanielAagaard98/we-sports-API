@@ -21,21 +21,33 @@ class EventController extends Controller
          * Comprobar distintos parametros de get
          * para saber si buscamos por autor, ciudad, deporte?
          */
-
-        if ($request->get('creator')) {
+        $sportId = null;
+        $creatorId = null;
+        if ($request->get('creator')){
             $creatorId = $request->get('creator');
-            $events = $this->eventRepository->getEventsByUser($creatorId);
-        } elseif ($request->get('sport')) {
-            $sportId = $request->get('sport');
-            $events = $this->eventRepository->getEventsBySport($sportId);
-        } elseif ($request->get('city')) {
-            $city = $request->get('city');
-            $city = $this->parseGetParameterText($city);
-            $events = $this->eventRepository->getEventsByLocation($city);
-        } else {
-            $events = $this->eventRepository->notExpiredEventsCompleteInfo();
         }
-        return response()->json($events);
+        if ($request->get('sport')){
+            $sportId = $request->get('sport');
+        }
+        if ($request->get('city')){
+            $city = $request->get('city');
+        }
+        $filteredEvents = $this->eventRepository->filteredEvents($sportId, $creatorId);
+
+//        if ($request->get('creator')) {
+//            $creatorId = $request->get('creator');
+//            $events = $this->eventRepository->getEventsByUser($creatorId);
+//        } if ($request->get('sport')) {
+//            $sportId = $request->get('sport');
+//            $events = $this->eventRepository->getEventsBySport($sportId);
+//        } elseif ($request->get('city')) {
+//            $city = $request->get('city');
+//            $city = $this->parseGetParameterText($city);
+//            $events = $this->eventRepository->getEventsByLocation($city);
+//        } else {
+//            $events = $this->eventRepository->notExpiredEventsCompleteInfo();
+//        }
+        return response()->json($filteredEvents);
     }
 
     public function getEventById(int $id)
