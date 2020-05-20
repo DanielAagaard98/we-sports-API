@@ -56,6 +56,7 @@ class EventRepository implements EventRepositoryInterface
     {
         return $this->event::where('sport_id', '=', $sportId)
             ->where('datetime', '>=', $this->datetime)
+            ->paginate(20)
             ->get();
     }
 
@@ -63,12 +64,14 @@ class EventRepository implements EventRepositoryInterface
     {
         return $this->event::where('city', 'like', $city)
             ->where('datetime', '>=', $this->datetime)
+            ->paginate(20)
             ->get();
     }
 
     public function getEventsByDate(DateTime $datetime)
     {
         return $this->event::where('datetime', '=', $this->datetime)
+            ->paginate(20)
             ->get();
     }
 
