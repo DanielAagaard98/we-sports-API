@@ -95,7 +95,7 @@ class EventRepository implements EventRepositoryInterface
             ->select('events.*', 'users.nickname', 'sports.name')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
-            ->sortBy('datetime')
+            ->orderBy('datetime', 'DESC')
             ->get();
     }
 
