@@ -21,7 +21,6 @@ class EventController extends Controller
          * Comprobar distintos parametros de get
          * para saber si buscamos por autor, ciudad, deporte?
          */
-
         if ($request->get('creator')) {
             $creatorId = $request->get('creator');
             $events = $this->eventRepository->getEventsByUser($creatorId);
