@@ -95,10 +95,11 @@ class EventRepository implements EventRepositoryInterface
             ->select('events.*', 'users.nickname', 'sports.name')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
+            ->sortBy('datetime')
             ->get();
     }
 
-    public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?DateTime $dateTime)
+    public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?string $date)
     {
         $query = $this->event::query()
             ->select('events.*', 'users.nickname', 'sports.name')
@@ -115,8 +116,9 @@ class EventRepository implements EventRepositoryInterface
             $city = str_replace('_', ' ', $city);
             $query->where('events.city', 'like', $city);
         }
-        if (!is_null($dateTime)){
-            $query->where('events.datetime', '=>', $dateTime);
+        if (!is_null($date)){
+            $date = Carbon::parse($date);
+            $query->whereDate('datetime', '=', $date);
         }
         return $query->get();
     }

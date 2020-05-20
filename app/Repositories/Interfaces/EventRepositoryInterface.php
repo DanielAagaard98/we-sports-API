@@ -19,5 +19,5 @@ interface EventRepositoryInterface
     public function getEventsByLocation(string $city);
     public function getEventsByDate(DateTime $dateTime);
     public function notExpiredEventsCompleteInfo();
-    public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?DateTime $date);
+    public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?string $date);
 }
