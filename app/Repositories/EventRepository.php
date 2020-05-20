@@ -54,10 +54,8 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventsBySport(int $sportId)
     {
-        return $this->event::where('sport_id', '=', $sportId)
-            ->where('datetime', '>=', $this->datetime)
-            ->paginate(20)
-            ->get();
+        return $this->notExpiredEventsCompleteInfo()
+            ->where('sport_id', '=', $sportId);
     }
 
     public function getEventsByLocation(string $city)
@@ -77,13 +75,9 @@ class EventRepository implements EventRepositoryInterface
 
     public function highlightedEvents()
     {
-        return $this->event::where('datetime', '>=', $this->datetime)
-            ->select('events.*', 'users.nickname', 'sports.name')
-            ->join('sports', 'events.sport_id', '=', 'sports.id')
-            ->join('users', 'events.creator_id', '=', 'users.id')
-            ->orderBy('events.max_participants', 'desc')
-            ->take(10)
-            ->get();
+        return $this->notExpiredEventsCompleteInfo()
+            ->sortByDesc('max_participants')
+            ->take(10);
 
     }
 
@@ -94,5 +88,9 @@ class EventRepository implements EventRepositoryInterface
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
             ->get();
+    }
+
+    public function filteredEvents(string $creator, $string )
+    {
     }
 }

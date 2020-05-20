@@ -24,7 +24,7 @@ class EventController extends Controller
         if ($request->get('creator')) {
             $creatorId = $request->get('creator');
             $events = $this->eventRepository->getEventsByUser($creatorId);
-        } elseif ($request->get('sport')) {
+        } if ($request->get('sport')) {
             $sportId = $request->get('sport');
             $events = $this->eventRepository->getEventsBySport($sportId);
         } elseif ($request->get('city')) {
