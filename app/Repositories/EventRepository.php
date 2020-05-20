@@ -57,9 +57,6 @@ class EventRepository implements EventRepositoryInterface
     {
         return $this->notExpiredEventsCompleteInfo()
             ->where('creator_id', '=', $userId);
-
-        return $this->event::where('creator_id', '=', $userId)
-            ->get();
     }
 
     ///PODRIA SOBRAR
@@ -101,7 +98,7 @@ class EventRepository implements EventRepositoryInterface
             ->get();
     }
 
-    public function filteredEvents(?int $sportId, ?int $creatorId)
+    public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?DateTime $dateTime)
     {
         $query = $this->event::query()
             ->select('events.*', 'users.nickname', 'sports.name')
@@ -113,6 +110,13 @@ class EventRepository implements EventRepositoryInterface
         }
         if (!is_null($creatorId)) {
             $query->where('creator_id', '=', $creatorId);
+        }
+        if (!is_null($city)){
+            $city = str_replace('_', ' ', $city);
+            $query->where('events.city', 'like', $city);
+        }
+        if (!is_null($dateTime)){
+            $query->where('events.datetime', '=>', $dateTime);
         }
         return $query->get();
     }
