@@ -4,6 +4,13 @@
 namespace App\Repositories;
 
 
+/**
+ * 1. && de fecha al filtro
+ * 2. ciudad Like
+ * 3. Función like usuario.
+ * 4. triple join participantes
+ */
+
 use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use Carbon\Carbon;
@@ -48,16 +55,20 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventsByUser(int $userId)
     {
+        return $this->notExpiredEventsCompleteInfo()
+            ->where('creator_id', '=', $userId);
+
         return $this->event::where('creator_id', '=', $userId)
             ->get();
     }
 
+    ///PODRIA SOBRAR
     public function getEventsBySport(int $sportId)
     {
         return $this->notExpiredEventsCompleteInfo()
             ->where('sport_id', '=', $sportId);
     }
-
+    ///PODRIA SOBRAR
     public function getEventsByLocation(string $city)
     {
         return $this->event::where('city', 'like', $city)
@@ -65,7 +76,7 @@ class EventRepository implements EventRepositoryInterface
             ->paginate(20)
             ->get();
     }
-
+    ///PODRIA SOBRAR
     public function getEventsByDate(DateTime $datetime)
     {
         return $this->event::where('datetime', '=', $this->datetime)
@@ -90,7 +101,19 @@ class EventRepository implements EventRepositoryInterface
             ->get();
     }
 
-    public function filteredEvents(string $creator, $string )
+    public function filteredEvents(?int $sportId, ?int $creatorId)
     {
+        $query = $this->event::query()
+            ->select('events.*', 'users.nickname', 'sports.name')
+            ->join('sports', 'events.sport_id', '=', 'sports.id')
+            ->join('users', 'events.creator_id', '=', 'users.id');
+
+        if (!is_null($sportId)){
+            $query->where('sport_id', '=', $sportId);
+        }
+        if (!is_null($creatorId)) {
+            $query->where('creator_id', '=', $creatorId);
+        }
+        return $query->get();
     }
 }
