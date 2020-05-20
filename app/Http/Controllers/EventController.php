@@ -23,6 +23,8 @@ class EventController extends Controller
          */
         $sportId = null;
         $creatorId = null;
+        $city = null;
+        $date = null;
         if ($request->get('creator')){
             $creatorId = $request->get('creator');
         }
@@ -32,21 +34,11 @@ class EventController extends Controller
         if ($request->get('city')){
             $city = $request->get('city');
         }
-        $filteredEvents = $this->eventRepository->filteredEvents($sportId, $creatorId);
+        if ($request->get('date')){
+            $date = $request->get('date');
+        }
+        $filteredEvents = $this->eventRepository->filteredEvents($sportId, $creatorId, $city, $date);
 
-//        if ($request->get('creator')) {
-//            $creatorId = $request->get('creator');
-//            $events = $this->eventRepository->getEventsByUser($creatorId);
-//        } if ($request->get('sport')) {
-//            $sportId = $request->get('sport');
-//            $events = $this->eventRepository->getEventsBySport($sportId);
-//        } elseif ($request->get('city')) {
-//            $city = $request->get('city');
-//            $city = $this->parseGetParameterText($city);
-//            $events = $this->eventRepository->getEventsByLocation($city);
-//        } else {
-//            $events = $this->eventRepository->notExpiredEventsCompleteInfo();
-//        }
         return response()->json($filteredEvents);
     }
 
