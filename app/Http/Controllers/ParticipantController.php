@@ -25,4 +25,10 @@ class ParticipantController extends Controller
         $createParticipant = $this->participantRepository->addParticipant($request->all());
         return response()->json($createParticipant, 201);
     }
+
+    public function deleteParticipant(int $participantId)
+    {
+        $deleteParticipant = $this->participantRepository->delete($participantId);
+        return response()->json($deleteParticipant, 201);
+    }
 }

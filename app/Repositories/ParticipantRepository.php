@@ -34,4 +34,9 @@ class ParticipantRepository implements ParticipantRepositoryInterface
     {
         return $this->participant::create($data);
     }
+
+    public function deleteParticipant(int $participantId)
+    {
+        return $this->participant::find($participantId)->deleteParticipant();
+    }
 }
