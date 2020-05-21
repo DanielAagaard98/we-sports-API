@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Participant;
 use App\Repositories\Interfaces\ParticipantRepositoryInterface;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ParticipantRepository implements ParticipantRepositoryInterface
 {
@@ -38,5 +39,13 @@ class ParticipantRepository implements ParticipantRepositoryInterface
     public function deleteParticipant(int $participantId)
     {
         return $this->participant::find($participantId)->deleteParticipant();
+    }
+
+    public function participating(int $user_id, int $event_id)
+    {
+        $participating = $this->participant::where('user_id', '=', $user_id)
+            ->where('event_id', '=', $event_id)
+            ->count();
+        return $participating;
     }
 }
