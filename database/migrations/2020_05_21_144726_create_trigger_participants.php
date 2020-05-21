@@ -16,7 +16,7 @@ class CreateTriggerParticipants extends Migration
         DB::unprepared(
             'CREATE TRIGGER set_first_participant
             AFTER INSERT ON events FOR EACH ROW
-            INSERT INTO participants (uid, event_id) VALUES
+            INSERT INTO participants (user_id, event_id) VALUES
             (NEW.creator_id, NEW.id)'
         );
     }
