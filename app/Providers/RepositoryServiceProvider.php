@@ -6,8 +6,10 @@ use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Repositories\Interfaces\ParticipantRepositoryInterface;
 use App\Repositories\Interfaces\SportRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\ParticipantRepository;
 use App\Repositories\SportRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -30,6 +32,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ParticipantRepositoryInterface::class,
             ParticipantRepository::class
+        );
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class
         );
     }
 
