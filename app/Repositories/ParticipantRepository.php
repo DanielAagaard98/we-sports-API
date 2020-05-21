@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Participant;
 use App\Repositories\Interfaces\ParticipantRepositoryInterface;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ParticipantRepository implements ParticipantRepositoryInterface
 {
@@ -44,7 +45,7 @@ class ParticipantRepository implements ParticipantRepositoryInterface
     {
         $participating = $this->participant::where('user_id', '=', $user_id)
             ->where('event_id', '=', $event_id)
-            ->get();
-        return !empty($participating);
+            ->count();
+        return $participating;
     }
 }
