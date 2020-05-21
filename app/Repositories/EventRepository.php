@@ -5,10 +5,7 @@ namespace App\Repositories;
 
 
 /**
- * 1. && de fecha al filtro
- * 2. ciudad Like
- * 3. Función like usuario.
- * 4. triple join participantes
+ *
  */
 
 use App\Event;
@@ -70,21 +67,19 @@ class EventRepository implements EventRepositoryInterface
     {
         return $this->event::where('city', 'like', $city)
             ->where('datetime', '>=', $this->datetime)
-            ->paginate(20)
             ->get();
     }
     ///PODRIA SOBRAR
     public function getEventsByDate(DateTime $datetime)
     {
         return $this->event::where('datetime', '=', $this->datetime)
-            ->paginate(20)
             ->get();
     }
 
     public function highlightedEvents()
     {
         return $this->notExpiredEventsCompleteInfo()
-            ->sortByDesc('max_participants')
+            ->sortByDesc('num_participants')
             ->take(10);
 
     }
