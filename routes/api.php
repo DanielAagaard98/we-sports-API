@@ -48,5 +48,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('events/{id}', 'EventController@deleteEvent');
     Route::put('events/{id}', 'EventController@updateEvent');
     Route::post('participants', 'ParticipantController@addParticipant');
+    Route::delete('participants', 'ParticipantController@deleteParticipant');
 });
 
