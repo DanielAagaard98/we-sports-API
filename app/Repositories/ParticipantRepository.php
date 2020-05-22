@@ -36,9 +36,11 @@ class ParticipantRepository implements ParticipantRepositoryInterface
         return $this->participant::create($data);
     }
 
-    public function deleteParticipant(int $participantId)
+    public function delete(int $user_id, int $event_id)
     {
-        return $this->participant::find($participantId)->deleteParticipant();
+        return $this->participant::where('user_id', '=', $user_id)
+            ->where('event_id', '=', $event_id)
+            ->delete();
     }
 
     public function participating(int $user_id, int $event_id)
