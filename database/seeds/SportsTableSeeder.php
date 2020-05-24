@@ -5,8 +5,18 @@ use Illuminate\Database\Seeder;
 
 class SportsTableSeeder extends Seeder
 {
-    const SPORTS = ['Futbol', 'Basquet', 'Tenis', 'Voley', 'Padel', 'Ciclismo', 'Patinaje', 'Senderismo',
-                    'Waterpolo', 'Hockey'];
+    const SPORTS = [
+        'fas fa-futbol' => 'Futbol',
+        'fas fa-basketball-ball' => 'Basquet',
+        'fas fa-table-tennis' => 'Tenis',
+        'fas fa-volleyball-ball' => 'Voley',
+        'fas fa-football-ball' => 'Rugby',
+        'fas fa-bicycle' => 'Ciclismo',
+        'fas fa-skating' => 'Patinaje',
+        'fas fa-hiking' => 'Senderismo',
+        'fas fa-swimmer' => 'Waterpolo',
+        'fas fa-hockey-puck' => 'Hockey',
+    ];
     /**
      * Run the database seeds.
      *
@@ -14,8 +24,9 @@ class SportsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (self::SPORTS as $sport){
+        foreach (self::SPORTS as $class => $sport){
             Sport::create([
+                'logo' => $class,
                 'name' => $sport
             ]);
         }
