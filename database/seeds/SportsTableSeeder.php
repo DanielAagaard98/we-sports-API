@@ -24,8 +24,9 @@ class SportsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (self::SPORTS as $sport){
+        foreach (self::SPORTS as $class => $sport){
             Sport::create([
+                'logo' => $class,
                 'name' => $sport
             ]);
         }
