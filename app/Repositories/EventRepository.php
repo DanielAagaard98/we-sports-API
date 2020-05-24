@@ -88,7 +88,7 @@ class EventRepository implements EventRepositoryInterface
     public function notExpiredEventsCompleteInfo()
     {
         return $this->event::where('datetime', '>=', $this->datetime)
-            ->select('events.*', 'users.nickname', 'sports.*')
+            ->select('users.nickname', 'sports.*', 'events.*')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
             ->orderBy('datetime', 'DESC')
@@ -98,7 +98,7 @@ class EventRepository implements EventRepositoryInterface
     public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?string $date)
     {
         $query = $this->event::query()
-            ->select('events.*', 'users.nickname', 'sports.name', 'sports.logo')
+            ->select('users.nickname', 'sports.name', 'sports.logo', 'events.*')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id');
 
