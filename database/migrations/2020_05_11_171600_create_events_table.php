@@ -23,7 +23,7 @@ class CreateEventsTable extends Migration
             $table->text('description');
             $table->dateTime('datetime');
             $table->integer('max_participants');
-            $table->integer('current_participants')->default(1);
+            $table->integer('current_participants')->default(0);
             $table->text('img');
 
             $table->foreign('creator_id')->references('id')->on('users');
