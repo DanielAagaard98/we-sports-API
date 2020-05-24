@@ -31,7 +31,8 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventById(int $eventId)
     {
-        return $this->event::find($eventId);
+        return $this->notExpiredEventsCompleteInfo()
+            ->where('id', '=', $eventId);
     }
 
     public function create(array $data)
@@ -53,7 +54,7 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByUser(int $userId)
     {
         return $this->notExpiredEventsCompleteInfo()
-            ->where('creator_id', '=', $userId);
+                ->where('creator_id', '=', $userId);
     }
 
     ///PODRIA SOBRAR
