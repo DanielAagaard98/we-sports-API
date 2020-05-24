@@ -98,7 +98,7 @@ class EventRepository implements EventRepositoryInterface
     public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?string $date)
     {
         $query = $this->event::query()
-            ->select('events.*', 'users.nickname', 'sports.name')
+            ->select('events.*', 'users.nickname', 'sports.*')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id');
 
