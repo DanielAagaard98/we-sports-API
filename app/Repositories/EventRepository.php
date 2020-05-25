@@ -80,7 +80,7 @@ class EventRepository implements EventRepositoryInterface
     public function highlightedEvents()
     {
         return $this->notExpiredEventsCompleteInfo()
-            ->sortByDesc('num_participants')
+            ->sortByDesc('current_participants')
             ->take(10);
 
     }
