@@ -14,8 +14,12 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function all()
+    public function all(Request $request)
     {
+        if ($request->get('nickname')){
+            $nickname = $request->get('nickname');
+            return $this->getUserByNickname($nickname);
+        }
         return response()->json($this->userRepository->all());
     }
 
