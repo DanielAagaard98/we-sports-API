@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'nickname' => 'administrador',
             'email' => 'admin@admin.com',
             'password' => $userPassword,
-            'name' => 'Administrador',
+            'uname' => 'Administrador',
             'surnames' => 'We Sports',
             'phone' => 666777888,
             'city' => 'Barcelona',
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             $nameWithoutSpace = str_replace(' ', '', $name);
             User::create([
                 'nickname' => $nameWithoutSpace,
-                'name' => $name,
+                'uname' => $name,
                 'email' => $nameWithoutSpace.'@gmail.com',
                 'password' => $password,
                 'surnames' => $faker->name,

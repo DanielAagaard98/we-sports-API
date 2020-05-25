@@ -31,7 +31,8 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventById(int $eventId)
     {
-        return $this->event::find($eventId);
+        return $this->notExpiredEventsCompleteInfo()
+            ->where('id', '=', $eventId);
     }
 
     public function create(array $data)
@@ -53,7 +54,7 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByUser(int $userId)
     {
         return $this->notExpiredEventsCompleteInfo()
-            ->where('creator_id', '=', $userId);
+                ->where('creator_id', '=', $userId);
     }
 
     ///PODRIA SOBRAR
@@ -79,7 +80,7 @@ class EventRepository implements EventRepositoryInterface
     public function highlightedEvents()
     {
         return $this->notExpiredEventsCompleteInfo()
-            ->sortByDesc('num_participants')
+            ->sortByDesc('current_participants')
             ->take(10);
 
     }
@@ -87,7 +88,7 @@ class EventRepository implements EventRepositoryInterface
     public function notExpiredEventsCompleteInfo()
     {
         return $this->event::where('datetime', '>=', $this->datetime)
-            ->select('events.*', 'users.nickname', 'sports.name')
+            ->select('users.nickname', 'sports.*', 'events.*')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
             ->orderBy('datetime', 'DESC')
@@ -97,7 +98,7 @@ class EventRepository implements EventRepositoryInterface
     public function filteredEvents(?int $sportId, ?int $creatorId, ?string $city, ?string $date)
     {
         $query = $this->event::query()
-            ->select('events.*', 'users.nickname', 'sports.name')
+            ->select('users.nickname', 'sports.name', 'sports.logo', 'events.*')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id');
 
