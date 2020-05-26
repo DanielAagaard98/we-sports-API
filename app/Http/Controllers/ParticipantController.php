@@ -37,7 +37,12 @@ class ParticipantController extends Controller
     {
         return $this->participantRepository
             ->participating($request->get('user_id'), $request->get('event_id'));
-
-
     }
+
+    public function getAllEventsParticipants(Request $request)
+    {
+        return $this->participantRepository
+            ->getAllEventsParticipants($request->get('user_id'));
+    }
+
 }

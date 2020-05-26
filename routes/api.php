@@ -35,6 +35,7 @@ Route::get('sports/{id}', 'SportController@getSportById');
 Route::get('events/{id}/participants', 'ParticipantController@getParticipantsByEvent');
 Route::get('participating', 'ParticipantController@participating');
 Route::get('users-events/{id}', 'EventController@getEventsByUserId');
+Route::get('participating-events', 'ParticipantController@getAllEventsParticipants');
 
 Route::get('users', 'UserController@all');
 Route::get('users/{id}', 'UserController@getUserById');
