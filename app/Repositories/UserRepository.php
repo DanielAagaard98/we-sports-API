@@ -31,4 +31,10 @@ class UserRepository implements UserRepositoryInterface
         return $this->user::where('nickname', '=', $nickname)
             ->get();
     }
+
+    public function updateUser(array $data, int $userId)
+    {
+        return $this->user::findOrFail($userId)
+            ->update($data);
+    }
 }
