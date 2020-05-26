@@ -57,7 +57,7 @@ class ParticipantRepository implements ParticipantRepositoryInterface
             ->join('events', 'events.id', '=', 'participants.event_id')
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id')
-            ->select('users.nickname', 'sports.*', 'events.*')
+            ->select('users.nickname', 'sports.name', 'events.*')
             ->get();
     }
 }
