@@ -21,7 +21,7 @@ class EventRepository implements EventRepositoryInterface
     public function __construct(Event $event)
     {
         $this->event = $event;
-        $this->datetime = Carbon::now();
+        $this->datetime = Carbon::now('Europe/Madrid');
     }
 
     public function all()

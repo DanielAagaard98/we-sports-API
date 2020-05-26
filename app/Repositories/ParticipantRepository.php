@@ -50,4 +50,14 @@ class ParticipantRepository implements ParticipantRepositoryInterface
             ->count();
         return $participating;
     }
+
+    public function getAllEventsParticipants(int $user_id)
+    {
+        return $this->participant::where('user_id', '=', $user_id)
+            ->join('events', 'events.id', '=', 'participants.event_id')
+            ->join('sports', 'events.sport_id', '=', 'sports.id')
+            ->join('users', 'events.creator_id', '=', 'users.id')
+            ->select('users.nickname', 'sports.name', 'events.*')
+            ->get();
+    }
 }
