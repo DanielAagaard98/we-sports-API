@@ -32,8 +32,10 @@ class UserRepository implements UserRepositoryInterface
             ->get();
     }
 
-    public function updateUser(array $data, int $userId)
+    public function updateUser(array $data)
     {
+        $userId = $data['id'];
+        unset($data['id']);
         return $this->user::findOrFail($userId)
             ->update($data);
     }
