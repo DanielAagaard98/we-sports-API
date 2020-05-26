@@ -9,5 +9,5 @@ interface UserRepositoryInterface
     public function all();
     public function getUserById(int $userId);
     public function getUserByNickname(string $nickname);
-    public function updateUser(array $data, int $userId);
+    public function updateUser(array $data);
 }

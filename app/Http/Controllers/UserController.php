@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function updateUser(Request $request)
     {
-        $updatedUser = $this->userRepository->updateUser($request->all(), $request->get('id'));
+        $updatedUser = $this->userRepository->updateUser($request->all());
         return response()->json($updatedUser, 200);
     }
 
