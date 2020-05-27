@@ -29,7 +29,6 @@ class EventsTableSeeder extends Seeder
                 'address' => $faker->address,
                 'datetime' => $faker->dateTimeBetween('+2 months', '+2 years'),
                 'max_participants' => rand(1,50),
-                'img' => 'img/test',
             ]);
         }
     }
