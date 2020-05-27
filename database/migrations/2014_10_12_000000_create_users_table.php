@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('rating')->default(0);
             $table->string('city', 100)->nullable();
             $table->string('address', 200)->nullable();
-            $table->text('uimg')->nullable();
+            $table->string('uimg')->default("images/profile/default-profile-image.png");
             $table->rememberToken();
             $table->timestamps();
         });
