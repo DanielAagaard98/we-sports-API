@@ -42,8 +42,9 @@ class EventRepository implements EventRepositoryInterface
 
     public function update(array $data, int $eventId)
     {
-        return $this->event::findOrFail($eventId)
-            ->update($data);
+        $event = $this->event::findOrFail($eventId);
+        $event->update($data);
+        return $event;
     }
 
     public function delete(int $eventId)
