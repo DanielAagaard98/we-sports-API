@@ -42,7 +42,6 @@ Route::get('users', 'UserController@all');
 Route::get('users/{id}', 'UserController@getUserById');
 Route::post('users/update', 'UserController@updateUser');
 
-//Route::post('signup', 'AuthController@signup');
 Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {

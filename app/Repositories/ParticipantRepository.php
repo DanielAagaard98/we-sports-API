@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Participant;
 use App\Repositories\Interfaces\ParticipantRepositoryInterface;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class ParticipantRepository implements ParticipantRepositoryInterface
 {
