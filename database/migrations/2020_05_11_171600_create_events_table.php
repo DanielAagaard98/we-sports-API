@@ -26,8 +26,8 @@ class CreateEventsTable extends Migration
             $table->integer('current_participants')->default(0);
             $table->string('img')->default("images/events/default-event-image.jpg");
 
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('sport_id')->references('id')->on('sports');
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('sport_id')->references('id')->on('sports')->onDelete('cascade');
             $table->timestamps();
         });
     }
