@@ -11,7 +11,6 @@ namespace App\Repositories;
 use App\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use Carbon\Carbon;
-use DateTime;
 
 class EventRepository implements EventRepositoryInterface
 {
@@ -55,27 +54,7 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsByUser(int $userId)
     {
         return $this->notExpiredEventsCompleteInfo()
-                ->where('creator_id', '=', $userId);
-    }
-
-    ///PODRIA SOBRAR
-    public function getEventsBySport(int $sportId)
-    {
-        return $this->notExpiredEventsCompleteInfo()
-            ->where('sport_id', '=', $sportId);
-    }
-    ///PODRIA SOBRAR
-    public function getEventsByLocation(string $city)
-    {
-        return $this->event::where('city', 'like', $city)
-            ->where('datetime', '>=', $this->datetime)
-            ->get();
-    }
-    ///PODRIA SOBRAR
-    public function getEventsByDate(DateTime $datetime)
-    {
-        return $this->event::where('datetime', '=', $this->datetime)
-            ->get();
+            ->where('creator_id', '=', $userId);
     }
 
     public function highlightedEvents()
@@ -83,7 +62,6 @@ class EventRepository implements EventRepositoryInterface
         return $this->notExpiredEventsCompleteInfo()
             ->sortByDesc('current_participants')
             ->take(10);
-
     }
 
     public function notExpiredEventsCompleteInfo()
@@ -103,17 +81,17 @@ class EventRepository implements EventRepositoryInterface
             ->join('sports', 'events.sport_id', '=', 'sports.id')
             ->join('users', 'events.creator_id', '=', 'users.id');
 
-        if (!is_null($sportId)){
+        if (!is_null($sportId)) {
             $query->where('sport_id', '=', $sportId);
         }
         if (!is_null($creatorId)) {
             $query->where('creator_id', '=', $creatorId);
         }
-        if (!is_null($city)){
+        if (!is_null($city)) {
             $city = str_replace('_', ' ', $city);
             $query->where('events.city', 'like', $city);
         }
-        if (!is_null($date)){
+        if (!is_null($date)) {
             $date = Carbon::parse($date);
             $query->whereDate('datetime', '=', $date);
         }

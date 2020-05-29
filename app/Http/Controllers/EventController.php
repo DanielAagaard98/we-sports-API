@@ -25,16 +25,16 @@ class EventController extends Controller
         $creatorId = null;
         $city = null;
         $date = null;
-        if ($request->get('creator')){
+        if ($request->get('creator')) {
             $creatorId = $request->get('creator');
         }
-        if ($request->get('sport')){
+        if ($request->get('sport')) {
             $sportId = $request->get('sport');
         }
-        if ($request->get('city')){
+        if ($request->get('city')) {
             $city = $request->get('city');
         }
-        if ($request->get('date')){
+        if ($request->get('date')) {
             $date = $request->get('date');
         }
         $filteredEvents = $this->eventRepository->filteredEvents($sportId, $creatorId, $city, $date);

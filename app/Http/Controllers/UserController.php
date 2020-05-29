@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function all(Request $request)
     {
-        if ($request->get('nickname')){
+        if ($request->get('nickname')) {
             $nickname = $request->get('nickname');
             return $this->getUserByNickname($nickname);
         }
